@@ -129,3 +129,13 @@ function renderView(contact) {
     
     document.querySelector('.contactname').insertAdjacentHTML('beforeend', imageNode)
 }
+
+
+function clearCreateIndex(evt) {
+	evt.preventDefault()
+	cleanUpIndex()
+	renderIndex(contactList)
+}
+
+document.querySelector('#contactshome').addEventListener('click', clearCreateIndex)
+
