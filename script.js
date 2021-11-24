@@ -109,6 +109,9 @@ function renderCreate() {
 	</div>`
 
 	formContent.insertAdjacentHTML('beforeend', page2ButtonHTML)
+
+	
+	document.querySelector('#cancel').addEventListener('click', clearRenderIndex)
 }
 
 function cleanUpView() {
