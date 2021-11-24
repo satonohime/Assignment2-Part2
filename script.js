@@ -22,13 +22,35 @@ function cleanUpIndex() {
 }
 
 function createSingleIndex(contact) {
-    return `<a href="page3.html"><div class="contact">${contact.name}</div></a>`
+	let link = document.createElement('a')
+	link.href = "page3.html"
+
+	let div = document.createElement('div')
+	div.className = 'contact'
+	let text = document.createTextNode(`${contact.name}`)
+	div.appendChild(text)
+
+	link.appendChild(div)
+
+	link.addEventListener('click', (evt) => {
+		evt.preventDefault()
+		console.log(evt.target)
+		contactName = evt.target.innerHTML
+		for (let i = 0; i < contactList.length; i++) {
+			if (contactList[i].name == contactName) {
+				cleanUpIndex()
+				renderView(contactList[i])
+			}
+		}
+	})
+
+	return link
 }
 
 function renderIndex(contactList) {
     let mainClassElem = document.querySelector('.main')
     for (let i = 0; i < contactList.length; i++) {
-        mainClassElem.insertAdjacentHTML('beforeend', createSingleIndex(contactList[i]))
+        mainClassElem.appendChild(createSingleIndex(contactList[i]))
     }
 }
 
@@ -115,7 +137,7 @@ function renderView(contact) {
     `<div class="buttons">
         <button class="button edit" value="Edit">Edit</button>
         <button class="button close" value="Close">Close</button>
-    </div>`
+    </div>`	
 
     let imageNode = `<img src="./img/profile.jpg" class="profilepic" alt="Profile picture">`
 
@@ -128,14 +150,19 @@ function renderView(contact) {
     contactInfoElem.insertAdjacentHTML('beforeend', buttonsNode)
     
     document.querySelector('.contactname').insertAdjacentHTML('beforeend', imageNode)
+
+	document.querySelector('.button.close').addEventListener('click', clearRenderIndex)
 }
 
 
 function clearRenderIndex(evt) {
 	evt.preventDefault()
+	console.log(evt.target)
 	cleanUpIndex()
 	renderIndex(contactList)
 }
+
+document.querySelector('#contactshome').addEventListener('click', clearRenderIndex)
 
 function clearRenderCreate(evt) {
 	evt.preventDefault()
@@ -143,11 +170,15 @@ function clearRenderCreate(evt) {
 	renderCreate()
 }
 
-document.querySelector('#contactshome').addEventListener('click', clearRenderIndex)
 document.querySelector('#newcontact').addEventListener('click', clearRenderCreate)
 
+document.querySelector('.button.edit').addEventListener('click', (evt) => {
+	evt.preventDefault()
+})
 
 
+
+		
 
 
 
