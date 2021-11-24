@@ -131,11 +131,24 @@ function renderView(contact) {
 }
 
 
-function clearCreateIndex(evt) {
+function clearRenderIndex(evt) {
 	evt.preventDefault()
 	cleanUpIndex()
 	renderIndex(contactList)
 }
 
-document.querySelector('#contactshome').addEventListener('click', clearCreateIndex)
+function clearRenderCreate(evt) {
+	evt.preventDefault()
+	cleanUpCreate()
+	renderCreate()
+}
+
+document.querySelector('#contactshome').addEventListener('click', clearRenderIndex)
+document.querySelector('#newcontact').addEventListener('click', clearRenderCreate)
+
+
+
+
+
+
 
