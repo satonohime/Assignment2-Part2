@@ -112,6 +112,21 @@ function renderCreate() {
 
 	
 	document.querySelector('#cancel').addEventListener('click', clearRenderIndex)
+
+	document.querySelector('#savecontact').addEventListener('click', (evt) => {
+		evt.preventDefault()
+		let obj = {}
+		
+		obj.name = document.querySelector('#contactname').value
+		obj.phone = document.querySelector('#contactphone').value
+		obj.address = document.querySelector('#contactaddress').value
+		obj.email = document.querySelector('#contactemail').value
+
+		contactList.push(obj)
+
+		cleanUpIndex()
+		renderView(obj)
+	})
 }
 
 function cleanUpView() {
@@ -155,6 +170,9 @@ function renderView(contact) {
     document.querySelector('.contactname').insertAdjacentHTML('beforeend', imageNode)
 
 	document.querySelector('.button.close').addEventListener('click', clearRenderIndex)
+	document.querySelector('.button.edit').addEventListener('click', (evt) => {
+		evt.preventDefault()
+	})
 }
 
 
@@ -169,15 +187,13 @@ document.querySelector('#contactshome').addEventListener('click', clearRenderInd
 
 function clearRenderCreate(evt) {
 	evt.preventDefault()
-	cleanUpCreate()
+	cleanUpIndex()
 	renderCreate()
 }
 
 document.querySelector('#newcontact').addEventListener('click', clearRenderCreate)
 
-document.querySelector('.button.edit').addEventListener('click', (evt) => {
-	evt.preventDefault()
-})
+
 
 
 
