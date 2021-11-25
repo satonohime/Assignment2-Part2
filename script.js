@@ -22,20 +22,15 @@ function cleanUpIndex() {
 }
 
 function createSingleIndex(contact) {
-	let link = document.createElement('a')
-	link.href = "page3.html"
-
 	let div = document.createElement('div')
 	div.className = 'contact'
 	let text = document.createTextNode(`${contact.name}`)
 	div.appendChild(text)
 
-	link.appendChild(div)
-
-	link.addEventListener('click', (evt) => {
+	div.addEventListener('click', (evt) => {
 		evt.preventDefault()
 		console.log(evt.target)
-		contactName = evt.target.innerHTML
+		contactName = evt.target.textContent
 		for (let i = 0; i < contactList.length; i++) {
 			if (contactList[i].name == contactName) {
 				cleanUpIndex()
@@ -44,7 +39,7 @@ function createSingleIndex(contact) {
 		}
 	})
 
-	return link
+	return div
 }
 
 function renderIndex(contactList) {
@@ -192,6 +187,8 @@ function clearRenderCreate(evt) {
 }
 
 document.querySelector('#newcontact').addEventListener('click', clearRenderCreate)
+
+document.addEventListener('DOMContentLoaded', renderIndex(contactList))
 
 
 
