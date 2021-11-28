@@ -29,7 +29,6 @@ function createSingleIndex(contact) {
 
 	div.addEventListener('click', (evt) => {
 		evt.preventDefault()
-		console.log(evt.target)
 		contactName = evt.target.textContent
 		for (let i = 0; i < contactList.length; i++) {
 			if (contactList[i].name == contactName) {
@@ -173,7 +172,6 @@ function renderView(contact) {
 
 function clearRenderIndex(evt) {
 	evt.preventDefault()
-	console.log(evt.target)
 	cleanUpIndex()
 	renderIndex(contactList)
 }
