@@ -104,6 +104,11 @@ function renderCreate() {
 
 	formContent.insertAdjacentHTML('beforeend', page2ButtonHTML)
 
+	document.querySelectorAll('.inputcontainer button').forEach(item => {
+		item.addEventListener('click', evt => {
+		  evt.preventDefault()
+		})
+	})
 	
 	document.querySelector('#cancel').addEventListener('click', clearRenderIndex)
 
@@ -185,15 +190,5 @@ function clearRenderCreate(evt) {
 }
 
 document.querySelector('#newcontact').addEventListener('click', clearRenderCreate)
-
 document.addEventListener('DOMContentLoaded', renderIndex(contactList))
-
-
-
-
-
-		
-
-
-
 
